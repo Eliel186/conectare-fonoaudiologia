@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  --color-blond: #F8F0DB;
+  --color-sunray: #E9BE5F;
+  --color-warm-gray: #65635C;
+  --color-off-white: #FDFBF2;
+
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-warm-gray bg-[#FEFDF6] leading-relaxed relative;
+    background-image: radial-gradient(rgba(233, 190, 95, 0.2) 0.5px, transparent 0.5px);
+    background-size: 40px 40px;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif -tracking-tight text-warm-gray;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    @apply leading-[0.9];
+  }
+  
+  h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    @apply leading-[1.1];
+  }
+
+  h3 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    @apply leading-[1.2];
+  }
+
+  /* Micro-interações de cliques em botões e links extremamente fluidas */
+  button, a {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  button:active, a:active {
+    transform: scale(0.96) !important;
+  }
+}
+
+.organic-blob {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(233, 190, 95, 0.15) 0%, transparent 70%);
+  will-change: transform;
+}
+
+.glass-card {
+  @apply bg-white/70 backdrop-blur-md rounded-[2.5rem] shadow-sm border border-white/20;
+}
+
+.organic-radius {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+.label-caps {
+  @apply text-[10px] uppercase font-bold tracking-[0.2em] text-warm-gray;
+}
+
+/* Ocultar barra de rolagem para o carrossel */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
