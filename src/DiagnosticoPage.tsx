@@ -30,13 +30,13 @@ const STEPS_DATA = [
   },
   {
     id: 3,
-    question: 'Você já realizou uma avaliação fonoaudiológica?',
+    question: 'Já fez acompanhamento fonoaudiológico antes?',
     description: 'Isso nos ajuda a entender em que etapa do cuidado você está.',
     options: [
-      'Sim, já tenho avaliação',
-      'Já fiz, mas há algum tempo',
-      'Não, nunca fiz',
-      'Não, mas acho que preciso',
+      'Sim, faço acompanhamento atualmente',
+      'Sim, já fiz, mas parei',
+      'Sim, já fiz, mas faz muito tempo',
+      'Nunca fiz acompanhamento',
     ],
   },
   {
