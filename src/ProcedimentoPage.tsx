@@ -197,10 +197,7 @@ export default function ProcedimentoPage({ slug, onNavigate }: { slug: string, o
             <div className="mt-16 pt-10 border-t border-blond flex flex-col sm:flex-row items-center gap-6 justify-between">
               <p className="text-sm font-semibold text-warm-gray uppercase tracking-widest">Dê o primeiro passo hoje mesmo</p>
               <button 
-                onClick={() => {
-                  const message = `Olá! Gostaria de agendar uma consulta sobre ${details.title} na Conectare.`;
-                  window.open(`https://wa.me/5547999021436?text=${encodeURIComponent(message)}`, '_blank');
-                }}
+                onClick={() => onNavigate('/diagnostico')}
                 className="bg-sunray text-gray-900 px-8 py-4 rounded-full font-black uppercase text-xs tracking-[0.25em] hover:scale-105 transition-transform shadow-lg w-full sm:w-auto text-center cursor-pointer"
               >
                 Agendar Avaliação

@@ -5,6 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import ProcedimentoPage from './ProcedimentoPage';
+import DiagnosticoPage from './DiagnosticoPage';
 import { 
   ChevronDown, 
   Menu, 
@@ -311,7 +312,13 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
             <a href="#especialidades" className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors">Especialidades</a>
             <a href="#equipe" className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors">Equipe</a>
             <button 
-              onClick={() => window.open('https://wa.me/5547999021436?text=Olá! Gostaria de agendar uma consulta fonoaudiológica online com a Conectare.', '_blank')}
+              onClick={() => onNavigate('/diagnostico')}
+              className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors cursor-pointer"
+            >
+              Diagnóstico
+            </button>
+            <button 
+              onClick={() => onNavigate('/diagnostico')}
               className="bg-sunray text-gray-900 px-8 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-opacity-90 transition-all shadow-lg cursor-pointer"
             >
               Agendar Consulta
@@ -340,7 +347,16 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
               <button 
                 onClick={() => {
                   setIsMenuOpen(false);
-                  window.open('https://wa.me/5547999021436?text=Olá! Gostaria de agendar uma consulta fonoaudiológica online com a Conectare.', '_blank');
+                  onNavigate('/diagnostico');
+                }}
+                className="text-sm font-bold uppercase tracking-widest text-left cursor-pointer"
+              >
+                Diagnóstico Online
+              </button>
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  onNavigate('/diagnostico');
                 }}
                 className="bg-sunray text-gray-900 px-6 py-3 rounded-xl text-center font-bold uppercase tracking-widest cursor-pointer w-full"
               >
@@ -410,7 +426,7 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
               <button 
-                onClick={() => window.open('https://wa.me/5547999021436?text=Olá! Gostaria de agendar uma consulta fonoaudiológica online com a Conectare.', '_blank')}
+                onClick={() => onNavigate('/diagnostico')}
                 className="bg-sunray text-gray-900 px-10 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] hover:scale-105 transition-all shadow-2xl shadow-sunray/20 cursor-pointer"
               >
                 Quero saber como funciona
@@ -723,7 +739,7 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
               </p>
             </div>
             <button 
-              onClick={() => window.open('https://wa.me/5547999021436?text=Olá! Gostaria de consultar vagas disponíveis para iniciar meu tratamento na Conectare.', '_blank')}
+              onClick={() => onNavigate('/diagnostico')}
               className="bg-sunray text-gray-900 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest shadow-lg cursor-pointer hover:scale-105 transition-all"
             >
               Consultar Vagas
@@ -909,13 +925,19 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
           <p className="text-xl md:text-2xl text-gray-900 mb-16 max-w-2xl mx-auto leading-relaxed font-semibold">
             Dê o primeiro passo hoje para uma melhor qualidade de vida sua, do seu filho ou seu familiar. Atendimento acolhedor e humanizado a um clique.
           </p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button 
-              onClick={() => window.open('https://wa.me/5547999021436?text=Olá! Gostaria de agendar uma consulta fonoaudiológica online com a Conectare.', '_blank')}
+              onClick={() => onNavigate('/diagnostico')}
               className="bg-sunray text-gray-900 px-14 py-7 rounded-2xl font-black uppercase text-xs tracking-[0.3em] hover:scale-105 transition-all shadow-[0_20px_40px_-10px_rgba(233,190,95,0.4)] flex items-center justify-center space-x-4 group cursor-pointer"
             >
               <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
               <span>Agendar via WhatsApp</span>
+            </button>
+            <button 
+              onClick={() => onNavigate('/diagnostico')}
+              className="bg-white/40 backdrop-blur-md border border-blond text-warm-gray px-12 py-6 rounded-2xl font-black uppercase text-xs tracking-[0.3em] hover:bg-white/60 transition-all flex items-center justify-center text-center cursor-pointer"
+            >
+              Diagnóstico Online
             </button>
           </div>
         </motion.div>
@@ -1037,6 +1059,10 @@ export default function App() {
     window.history.pushState({}, '', path);
     setCurrentPath(path);
   };
+
+  if (currentPath === '/diagnostico') {
+    return <DiagnosticoPage onNavigate={navigate} />;
+  }
 
   if (currentPath.startsWith('/procedimentos/')) {
     const slug = currentPath.replace('/procedimentos/', '');
