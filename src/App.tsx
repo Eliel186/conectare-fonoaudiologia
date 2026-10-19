@@ -6,6 +6,8 @@
 import { useState, useEffect, useRef } from 'react';
 import ProcedimentoPage from './ProcedimentoPage';
 import DiagnosticoPage from './DiagnosticoPage';
+import DepoimentosPage from './DepoimentosPage';
+import AudioTestimonialsSection from './AudioTestimonialsSection';
 import { 
   ChevronDown, 
   Menu, 
@@ -27,7 +29,8 @@ import {
   Quote,
   Star,
   Clock,
-  Heart
+  Heart,
+  Headphones
 } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 
@@ -309,6 +312,10 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
           
           <div className="hidden md:flex items-center space-x-8">
             <a href="#inicio" className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors border-b-2 border-sunray">Início</a>
+            <a href="#depoimentos-audio" className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors flex items-center gap-1.5">
+              <Headphones size={13} className="text-sunray" />
+              <span>Depoimentos</span>
+            </a>
             <a href="#especialidades" className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors">Especialidades</a>
             <a href="#equipe" className="text-[11px] uppercase font-bold tracking-widest hover:text-sunray transition-colors">Equipe</a>
             <button 
@@ -342,6 +349,10 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
           >
             <div className="flex flex-col p-6 space-y-4">
               <a href="#inicio" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold uppercase tracking-widest">Início</a>
+              <a href="#depoimentos-audio" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                <Headphones size={15} className="text-sunray" />
+                <span>Depoimentos em Áudio</span>
+              </a>
               <a href="#especialidades" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold uppercase tracking-widest">Especialidades</a>
               <a href="#equipe" onClick={() => setIsMenuOpen(false)} className="text-sm font-bold uppercase tracking-widest">Equipe</a>
               <button 
@@ -438,6 +449,20 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
                 Saiba Mais
               </a>
             </div>
+
+            {/* Quick Hero Access Pill to Audio Testimonials */}
+            <div className="mt-8 flex items-center">
+              <a 
+                href="#depoimentos-audio" 
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/70 hover:bg-white backdrop-blur-md border border-blond/80 hover:border-sunray/60 text-warm-gray text-[11px] font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-sm group cursor-pointer"
+              >
+                <div className="w-6 h-6 rounded-full bg-sunray/20 text-sunray flex items-center justify-center group-hover:bg-sunray group-hover:text-gray-900 transition-colors">
+                  <Headphones size={13} className="animate-pulse" />
+                </div>
+                <span>Ouça Relatos Reais em Áudio (3D)</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-sunray animate-ping" />
+              </a>
+            </div>
           </motion.div>
           
           <motion.div 
@@ -492,6 +517,9 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
         </div>
 
       </header>
+
+      {/* Audio Testimonials Section - Visualizador 3D Orb Conectare */}
+      <AudioTestimonialsSection onNavigate={onNavigate} />
 
       {/* Stats - Artistic Style */}
       <section className="py-24 md:py-40 relative z-10">
@@ -993,9 +1021,10 @@ function Home({ onNavigate }: { onNavigate: (path: string) => void }) {
               <h4 className="text-xs uppercase font-black tracking-[0.3em] text-sunray mb-12">Navegação</h4>
               <ul className="space-y-6 text-[11px] font-bold uppercase tracking-[0.2em] text-white/90">
                 <li><a href="#inicio" className="hover:text-sunray transition-colors">Início</a></li>
+                <li><a href="#depoimentos-audio" className="hover:text-sunray transition-colors">Depoimentos em Áudio</a></li>
                 <li><a href="#especialidades" className="hover:text-sunray transition-colors">Especialidades</a></li>
                 <li><a href="#equipe" className="hover:text-sunray transition-colors">Quem Somos</a></li>
-                <li><a href="#feedbacks" className="hover:text-sunray transition-colors">Feedbacks</a></li>
+                <li><a href="#feedbacks" className="hover:text-sunray transition-colors">Feedbacks WhatsApp</a></li>
               </ul>
             </div>
 
@@ -1062,6 +1091,10 @@ export default function App() {
 
   if (currentPath === '/diagnostico') {
     return <DiagnosticoPage onNavigate={navigate} />;
+  }
+
+  if (currentPath === '/depoimentos') {
+    return <DepoimentosPage onNavigate={navigate} />;
   }
 
   if (currentPath.startsWith('/procedimentos/')) {
