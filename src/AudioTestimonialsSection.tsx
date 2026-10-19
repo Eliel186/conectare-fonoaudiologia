@@ -34,19 +34,19 @@ export interface TestimonialAudioItem {
 
 export const audioTestimonialsData: TestimonialAudioItem[] = [
   {
-    id: 'emanuel-infantil',
+    id: 'manoel-infantil',
     specialtyId: 'infantil',
     category: 'Fala e Linguagem Infantil',
-    author: 'Mãe do Emanuel',
+    author: 'Mãe do Manoel',
     role: 'Mãe de Paciente Infantil',
     location: 'Atendimento Conectare',
-    title: '“O acompanhamento foi fundamental para o desenvolvimento da fala do Emanuel.”',
-    quote: 'Sempre que converso com outras mães, faço questão de falar o quanto foi fundamental o Emanuel fazer esse acompanhamento com vocês da Conectare. Mesmo sendo online, o tratamento funciona muito bem e fez toda a diferença no desenvolvimento dele. É um cuidado muito especial e importante para a nossa família.',
-    audioSrc: '/audio/depoimento-emanuel-infantil.mp4',
+    title: '“O acompanhamento foi fundamental para o desenvolvimento da fala do Manoel.”',
+    quote: 'Sempre que converso com outras mães, faço questão de falar o quanto foi fundamental o Manoel fazer esse acompanhamento com vocês da Conectare. Mesmo sendo online, o tratamento funciona muito bem e fez toda a diferença no desenvolvimento dele. É um cuidado muito especial e importante para a nossa família.',
+    audioSrc: '/audio/depoimento-manoel-infantil.mp4',
     durationSec: 47,
     rating: 5,
-    initials: 'ME',
-    highlightText: 'Foi fundamental o Emanuel fazer esse acompanhamento com vocês da Conectare. Fez toda a diferença no desenvolvimento dele.',
+    initials: 'MM',
+    highlightText: 'Foi fundamental o Manoel fazer esse acompanhamento com vocês da Conectare. Fez toda a diferença no desenvolvimento dele.',
   },
   {
     id: 'voz-adulta',
