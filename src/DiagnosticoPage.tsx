@@ -51,7 +51,19 @@ const STEPS_DATA = [
       'Ainda não consigo precisar',
     ],
   },
+  {
+    id: 5,
+    question: 'O atendimento da Conectare é 100% particular.',
+    description: 'Não trabalhamos com convênios. Faz sentido investir no cuidado da comunicação neste momento?',
+    options: [
+      'Sim, estou pronto(a) para investir e quero começar',
+      'Quero entender os valores antes de decidir',
+      'No momento, busco apenas atendimento por convênio ou gratuito',
+    ],
+  },
 ];
+
+const NAO_QUALIFICADO = 'No momento, busco apenas atendimento por convênio ou gratuito';
 
 export default function DiagnosticoPage({ onNavigate }: { onNavigate: (path: string) => void }) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -82,7 +94,9 @@ export default function DiagnosticoPage({ onNavigate }: { onNavigate: (path: str
 
   const progressPercent = isProcessing ? 100 : (currentStep / STEPS_DATA.length) * 100;
 
-  const whatsappMessage = `Olá! Finalizei o diagnóstico no site da Conectare. Busco ajuda para ${answers[1] || '...'}, com a queixa principal: ${answers[2] || '...'}. ${answers[3] || '...'} e a dificuldade está presente por ${answers[4] || '...'}. Gostaria de receber uma orientação personalizada.`;
+  const whatsappMessage = `Olá! Finalizei o diagnóstico no site da Conectare. Busco ajuda para ${answers[1] || '...'}, com a queixa principal: ${answers[2] || '...'}. ${answers[3] || '...'} e a dificuldade está presente por ${answers[4] || '...'}. Sobre o atendimento particular: ${answers[5] || '...'}. Gostaria de receber uma orientação personalizada.`;
+
+  const naoQualificado = answers[5] === NAO_QUALIFICADO;
 
   const whatsappLink = `https://wa.me/5547999021436?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -246,9 +260,13 @@ export default function DiagnosticoPage({ onNavigate }: { onNavigate: (path: str
                       <Check size={40} strokeWidth={3} />
                     </div>
 
-                    <h3 className="text-3xl md:text-4xl font-serif text-warm-gray mb-3">Diagnóstico Recebido!</h3>
+                    <h3 className="text-3xl md:text-4xl font-serif text-warm-gray mb-3">
+                      {naoQualificado ? 'Obrigado pela sinceridade!' : 'Diagnóstico Recebido!'}
+                    </h3>
                     <p className="text-sm text-warm-gray/80 mb-10 max-w-md mx-auto">
-                      Analisamos suas respostas e preparamos uma orientação personalizada com base no seu perfil.
+                      {naoQualificado
+                        ? 'Nosso atendimento é particular e não trabalhamos com convênios. Se quiser conhecer as condições ou guardar nosso contato para depois, é só chamar no WhatsApp.'
+                        : 'Analisamos suas respostas e preparamos uma orientação personalizada com base no seu perfil.'}
                     </p>
 
                     <a
