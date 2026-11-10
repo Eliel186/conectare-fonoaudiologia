@@ -53,17 +53,24 @@ const STEPS_DATA = [
   },
   {
     id: 5,
-    question: 'O atendimento da Conectare é 100% particular.',
-    description: 'Não trabalhamos com convênios. Faz sentido investir no cuidado da comunicação neste momento?',
+    question: 'Você está disposto(a) a investir para melhorar sua voz e sua comunicação?',
+    description: 'Nosso atendimento é particular: sessões individuais com fonoaudióloga especialista, on-line, sem sair de casa e em horários que cabem na sua rotina.',
     options: [
-      'Sim, estou pronto(a) para investir e quero começar',
-      'Quero entender os valores antes de decidir',
-      'No momento, busco apenas atendimento por convênio ou gratuito',
+      'Sim, quero começar o quanto antes',
+      'Quero conhecer os valores e as condições',
+      'Por enquanto, procuro atendimento por convênio',
     ],
   },
 ];
 
-const NAO_QUALIFICADO = 'No momento, busco apenas atendimento por convênio ou gratuito';
+const NAO_QUALIFICADO = 'Por enquanto, procuro atendimento por convênio';
+
+// Passo 5 fala com quem vai ser atendido (resposta do passo 1).
+function perguntaInvestimento(paraQuem?: string) {
+  if (paraQuem?.startsWith('Para meu filho')) return 'Você está disposto(a) a investir para melhorar a fala e a comunicação do seu filho(a)?';
+  if (paraQuem?.startsWith('Para um familiar')) return 'Você está disposto(a) a investir para melhorar a comunicação de quem você ama?';
+  return 'Você está disposto(a) a investir para melhorar sua voz e sua comunicação?';
+}
 
 export default function DiagnosticoPage({ onNavigate }: { onNavigate: (path: string) => void }) {
   const [currentStep, setCurrentStep] = useState(1);
@@ -221,7 +228,7 @@ export default function DiagnosticoPage({ onNavigate }: { onNavigate: (path: str
                     transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
                   >
                     <h3 className="text-2xl md:text-4xl font-serif text-warm-gray leading-tight mb-3">
-                      {activeStepData.question}
+                      {currentStep === 5 ? perguntaInvestimento(answers[1]) : activeStepData.question}
                     </h3>
                     <p className="text-sm text-warm-gray/80 mb-8">{activeStepData.description}</p>
 
@@ -261,11 +268,11 @@ export default function DiagnosticoPage({ onNavigate }: { onNavigate: (path: str
                     </div>
 
                     <h3 className="text-3xl md:text-4xl font-serif text-warm-gray mb-3">
-                      {naoQualificado ? 'Obrigado pela sinceridade!' : 'Diagnóstico Recebido!'}
+                      {naoQualificado ? 'Que bom que você chegou até aqui!' : 'Diagnóstico Recebido!'}
                     </h3>
                     <p className="text-sm text-warm-gray/80 mb-10 max-w-md mx-auto">
                       {naoQualificado
-                        ? 'Nosso atendimento é particular e não trabalhamos com convênios. Se quiser conhecer as condições ou guardar nosso contato para depois, é só chamar no WhatsApp.'
+                        ? 'Nosso atendimento é particular, e tudo bem se agora não for o momento. Fale com a gente no WhatsApp para conhecer as condições, sem compromisso. Quando decidir dar esse passo, estaremos aqui.'
                         : 'Analisamos suas respostas e preparamos uma orientação personalizada com base no seu perfil.'}
                     </p>
 
